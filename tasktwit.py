@@ -11,6 +11,7 @@ if api.GetDirectMessages():
         if str(msg.sender_screen_name) in authorized_users:
             add_task(msg.AsDict())
 
+
 def add_task(msg):
     task = msg.text
     thl = TheHitList.Application()
