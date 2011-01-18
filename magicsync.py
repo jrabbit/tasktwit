@@ -7,34 +7,19 @@ import time
 import json
 
 import TheHitList
-import producteev
+import support.producteev
+import support.directory
 
-# a bit of repeat code from hitman
-
-def directory():
-    """Construct tasktwit_dir from os name"""
-    home = os.path.expanduser('~')
-    if platform.system() == 'Linux':
-        hitman_dir = os.path.join(home, '.tasktwit')
-    elif platform.system() == 'Darwin':
-        hitman_dir = os.path.join(home, 'Library', 'Application Support',
-         'tasktwit')
-    elif platform.system() == 'Windows':
-        hitman_dir = os.path.join(os.environ['appdata'], 'tasktwit')
-    else:
-        hitman_dir = os.path.join(home, '.tasktwit')
-    if not os.path.isdir(tasktwit_dir):
-        os.mkdir(tasktwit_dir)
-    return tasktwit_dir
 
 def get_db():
     """Get database of synced tasks.
     db[sha1] = jsonobj"""
-    db = anydbm.open(os.path.join(directory(), 'sync'), 'c')
+    db = anydbm.open(os.path.join(support.directory.directory(), 'sync'), 'c')
     return db
 
 def get_settings():
-    db = anydbm.open(os.path.join(directory(), 'settings'), 'c')
+    db = anydbm.open(os.path.join(support.directory.directory(),
+    'settings'), 'c')
     return db
 
 def is_new(task):
@@ -68,6 +53,6 @@ def add(task, source, dests):
     apps = {'thl': add_thl, 'prod': add_producteev}
     taskdb = get_db()
     taskdb[hashlib.sha1(task).hexdigest()] = json.dumps({'text':task,
-     'date': time.ctime(), 'source': source, 'dest': dests })
+     'date': time.ctime(), 'source': source, 'dest': dests, 'done': 0 })
     for x in dests:
         apps[x](task)
