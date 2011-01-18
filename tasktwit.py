@@ -1,6 +1,7 @@
-import twitter
 import sys
 import TheHitList
+
+import support.twitter as twitter
 from conf import *
 
 api = twitter.Api(consumer_key,consumer_secret, access_token_key,
