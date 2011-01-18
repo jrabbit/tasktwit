@@ -2,7 +2,7 @@ import os
 
 import rtm
 
-import remilk
+import remilk.Milk.Milk as Milk
 import directory
 
 API_KEY = '012ddccfd49f6960a979c967b03342db'
@@ -16,10 +16,10 @@ def get_settings():
 def milk(apiKey, secret):
     settings = get_settings()
     if 'rtm-token' in settings:
-        moo = remilk.Milk(apiKey, secret, settings['rtm-token'])
+        moo = Milk(apiKey, secret, settings['rtm-token'])
     else:
         settings['rtm-token'] = auth()
-        moo = remilk.Milk(apiKey, secret, settings['rtm-token'])
+        moo = Milk(apiKey, secret, settings['rtm-token'])
     return moo
 
 def auth():
