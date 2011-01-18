@@ -6,7 +6,7 @@ import hashlib
 import time
 import json
 
-import TheHitList
+import support.thl
 import support.producteev
 import support.directory
 
@@ -29,13 +29,6 @@ def is_new(task):
     else:
         return True
 
-def add_thl(task):
-    # local thl usage
-    thl = TheHitList.Application()
-    thl_task = TheHitList.Task()
-    thl_task.title = task
-    thl.inbox().add_task(thl_task)
-
 def add_producteev(task):
     settings = get_settings()
     if 'prod-user-token' in settings:
@@ -50,7 +43,7 @@ def add_producteev(task):
         producteev.add_task(token, task)
 
 def add(task, source, dests):
-    apps = {'thl': add_thl, 'prod': add_producteev}
+    apps = {'thl': support.thl.add_task, 'prod': add_producteev}
     taskdb = get_db()
     taskdb[hashlib.sha1(task).hexdigest()] = json.dumps({'text':task,
      'date': time.ctime(), 'source': source, 'dest': dests, 'done': 0 })

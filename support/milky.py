@@ -32,7 +32,7 @@ def auth():
 def get_tasks(moo):
     pass
 
-def add_tasks(task):
+def add_task(task):
     pass
 
 def finish_task(task):
