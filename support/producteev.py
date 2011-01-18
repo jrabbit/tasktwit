@@ -47,6 +47,8 @@ def add_task(task, token):
     confirm_json = urllib2.urlopen(url + 'tasks/create.json', data).read()
     return confirm_json
 
+def finish_task(task):
+    pass
 
 if __name__ == '__main__':
     import sys
