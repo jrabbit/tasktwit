@@ -2,6 +2,7 @@ import os
 
 import rtm
 
+import remilk
 import directory
 
 API_KEY = '012ddccfd49f6960a979c967b03342db'
@@ -15,10 +16,10 @@ def get_settings():
 def milk(apiKey, secret):
     settings = get_settings()
     if 'rtm-token' in settings:
-        moo = rtm.createRTM(apiKey, secret, settings['rtm-token'])
+        moo = remilk.Milk(apiKey, secret, settings['rtm-token'])
     else:
         settings['rtm-token'] = auth()
-        moo = rtm.createRTM(apiKey, secret, settings['rtm-token'])
+        moo = remilk.Milk(apiKey, secret, settings['rtm-token'])
     return moo
 
 def auth():
@@ -28,7 +29,7 @@ def auth():
     raw_input('Press enter once you gave access')
     return moo.getToken()
 
-def get_tasks():
+def get_tasks(moo):
     pass
 
 def add_tasks(task):

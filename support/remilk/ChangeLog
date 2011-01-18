@@ -1,0 +1,40 @@
+2009-12-08  Sridhar Ratnakumar <srid at nearfar.org>
+
+	* app.py: Fix for unreliable type of 'taskseries' (#5)
+	* rtm.py: Fixed incorrect number of arguments to "lists" (#3)
+	* rtm.py: Try to import django.utils.simplejson before falling back
+	* app.py: Made it a command-line app accepting key/secret/token as args
+
+2009-08-06  Sridhar Ratnakumar <srid at nearfar.org>
+
+	* setup.py: Write a setup.py and release 0.1
+
+2008-05-05  Mariano Draghi <mariano at chaghi dot com dot ar> 
+
+	* rtm.py: Issue a warnging if simplejson is not available.
+
+	* rtm.py: Fixed a corner case where parsing the response with 
+	  dottedJSON (i.e., when not using simplejson) would fail to
+	  fetch multiple tags. Contributed by Greg Allen.
+
+2008-04-26  Mariano Draghi <mariano at chaghi dot com dot ar> 
+
+	* rtm.py: Fixed invocation of tasks.notes methods, based on code
+	  contributed by David Steele.
+
+2008-03-24  Mariano Draghi <mariano at chaghi dot com dot ar> 
+
+	* rtm.py: Use the standard python logging module to handle
+	  debugging messages.
+
+2008-03-23  Mariano Draghi <mariano at chaghi dot com dot ar> 
+
+	* rtm.py: Implemented the full RTM API. Integrated simplejson to
+	  handle JSON responses, which should fix some encoding problems.
+	  Renamed some internal attributes (name, auth) of RTM class,
+	  because they where conflicting with some methods and arguments
+	  of the API calls wich had the same name. Fixed a minor issue
+	  with dottedDict class and non dict instances. Added a simple
+	  mechanism to turn debugging on/off dynamically.
+	* README / ChangeLog: Added.
+
