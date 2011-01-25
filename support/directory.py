@@ -1,5 +1,5 @@
 import os
-
+import platform
 
 def directory(name='tasktwit'):
     """Construct a directory from os name"""

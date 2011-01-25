@@ -1,7 +1,6 @@
 import os
 import sys
 import anydbm
-import platform
 import hashlib
 import time
 import json
@@ -33,14 +32,14 @@ def add_producteev(task):
     settings = get_settings()
     if 'prod-user-token' in settings:
         token = settings['prod-user-token']
-        producteev.add_task(token, task)
+        support.producteev.add_task(token, task)
     else:
         if 'prod-user' not in settings:
             user = raw_input("Need producteev username:")
             settings['prod-user'] = user
-        token = producteev.auth(settings['prod-user'])
+        token = support.producteev.auth(settings['prod-user'])
         settings['prod-user-token'] = token
-        producteev.add_task(token, task)
+        support.producteev.add_task(token, task)
 
 def add(task, source, dests):
     apps = {'thl': support.thl.add_task, 'prod': add_producteev}
@@ -49,3 +48,7 @@ def add(task, source, dests):
      'date': time.ctime(), 'source': source, 'dest': dests, 'done': 0 })
     for x in dests:
         apps[x](task)
+if __name__ == '__main__':
+    # while 1:
+    for task in support.thl.get_tasks():
+        add(task, 'thl', ['prod'])

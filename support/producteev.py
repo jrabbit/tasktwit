@@ -38,7 +38,7 @@ def get_tasks(token):
     raw_values = {'token': token, 'api_key': API_KEY}
     data = hancock(raw_values)
     tasks_json = urllib2.urlopen(url + 'tasks/show_list.json', data).read()
-    print json.loads(tasks_json)
+    return json.loads(tasks_json)
 
 def add_task(task, token):
     """Convience function to add a task"""

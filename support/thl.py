@@ -11,7 +11,7 @@ def add_task(task):
 def get_tasks():
     """returns list of THL tasks for *today*"""
     thl = TheHitList.Application()
-    return thl.today().tasks()
+    return [x.title for x in thl.today().tasks() if not x.completed and not x.canceled]
 
 
 def finish_task(task):
