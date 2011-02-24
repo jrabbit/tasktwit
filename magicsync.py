@@ -32,15 +32,15 @@ def add_producteev(task):
     settings = get_settings()
     if 'prod-user-token' in settings:
         token = settings['prod-user-token']
-        support.producteev.add_task(token, task)
+        support.producteev.add_task(task, token)
     else:
         if 'prod-user' not in settings:
             user = raw_input("Need producteev username:")
             settings['prod-user'] = user
         token = support.producteev.auth(settings['prod-user'])
         settings['prod-user-token'] = token
-        support.producteev.add_task(token, task)
-
+        support.producteev.add_task(task, token)
+#get prod support.producteev.get_tasks(get_settings()['prod-user-token'])
 def add(task, source, dests):
     apps = {'thl': support.thl.add_task, 'prod': add_producteev}
     taskdb = get_db()
