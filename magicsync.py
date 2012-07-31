@@ -41,8 +41,9 @@ def add_producteev(task):
         settings['prod-user-token'] = token
         support.producteev.add_task(task, token)
 #get prod support.producteev.get_tasks(get_settings()['prod-user-token'])
+
 def add(task, source, dests):
-    apps = {'thl': support.thl.add_task, 'prod': add_producteev}
+    apps = {'thl': support.thl.add_task, 'prod': add_producteev, 'rem': support.reminders.add_task}
     taskdb = get_db()
     taskdb[hashlib.sha1(task).hexdigest()] = json.dumps({'text':task,
      'date': time.ctime(), 'source': source, 'dest': dests, 'done': 0 })
