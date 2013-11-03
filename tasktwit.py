@@ -8,8 +8,9 @@ try:
   import json
 except ImportError:
     import simplejson as json
+if sys.platform != "darwin":
+    sys.exit("Targets TheHitList on Mac OS X only.")
 import TheHitList
-
 import support.directory
 import support.twitter as twitter
 
